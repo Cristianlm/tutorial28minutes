@@ -6,4 +6,15 @@ import { Injectable } from '@angular/core';
 export class HardcodedAuthenticationService {
 
   constructor() { }
+
+  authenticate(username, password){
+
+
+    if(username==="in28minutes" && password === 'dummy') {
+      return true;
+    } else {
+      return false;
+    }
+  
+  }
 }
