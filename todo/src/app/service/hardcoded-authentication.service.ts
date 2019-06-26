@@ -24,6 +24,9 @@ export class HardcodedAuthenticationService {
     // comprobar si el usuario está authentifciado
     let user= sessionStorage.getItem('authenticaterUser')
     return !(user === null)
-    
+
+  }
+  logout(){
+    sessionStorage.removeItem('authenticaterUser')
   }
 }
