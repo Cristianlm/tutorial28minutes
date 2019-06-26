@@ -9,12 +9,21 @@ export class HardcodedAuthenticationService {
 
   authenticate(username, password){
 
+    console.log('before '+ this.isUserLoggedIn());
 
     if(username==="in28minutes" && password === 'dummy') {
+      sessionStorage.setItem('authenticaterUser',username);
+      console.log('after ' + this.isUserLoggedIn());
       return true;
     } else {
       return false;
     }
-  
+  }
+
+  isUserLoggedIn(){
+    // comprobar si el usuario está authentifciado
+    let user= sessionStorage.getItem('authenticaterUser')
+    return !(user === null)
+    
   }
 }
