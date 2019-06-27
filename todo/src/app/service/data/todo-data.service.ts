@@ -18,7 +18,11 @@ export class TodoDataService {
   return this.http.get<Todo[]>(`http://localhost:8090/users/${username}/todos`); 
   
 }
+// Creamos un metodo para borrar un dato de un usuario específico
 
+deleteTodo(username,id){
+  return this.http.delete(`http://localhost:8090/users/${username}/todos/${id}`)
+}
 
 
 }

@@ -29,7 +29,7 @@ export class Todo {
 export class ListTodosComponent implements OnInit {
 
   todos: Todo[]
-
+  message:string
   // todos = [
   //   new Todo(1, 'Learn to Dance', false, new Date()),
   //   new Todo(2, 'Become an Expert at Angular', false, new Date()),
@@ -49,11 +49,25 @@ export class ListTodosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.refreshTodos();
+  }
+  refreshTodos(){
     this.todoService.retriveAllTodos('in28minutes').subscribe(
       response=> {
 
         console.log(response);
         this.todos = response;
+      }
+    )
+  }
+  deleteTodo (id) {
+    this.todoService.deleteTodo('in28minutes', id).subscribe(
+      response=> {
+        // si hay respuesta en un DELETE, se enseña un mensaje al usuatrio
+        console.log(response);
+        this.message= `Delete of Todo ${id} Successful!`;
+        this.refreshTodos();
+        
       }
     )
   }
