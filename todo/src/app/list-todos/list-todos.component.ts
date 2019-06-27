@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoDataService } from '../service/data/todo-data.service';
 
 //Future
 // - No Navigation Menu and Footer
@@ -27,23 +28,34 @@ export class Todo {
 })
 export class ListTodosComponent implements OnInit {
 
-  todos = [
-    new Todo(1, 'Learn to Dance', false, new Date()),
-    new Todo(2, 'Become an Expert at Angular', false, new Date()),
-    new Todo(3, 'Visit India', false, new Date())
-    // {id : 1, description : },
-    // {id : 2, description : ''},
-    // {id : 3, description : 'Visit India'}
-  ]
+  todos: Todo[]
+
+  // todos = [
+  //   new Todo(1, 'Learn to Dance', false, new Date()),
+  //   new Todo(2, 'Become an Expert at Angular', false, new Date()),
+  //   new Todo(3, 'Visit India', false, new Date())
+  //   // {id : 1, description : },
+  //   // {id : 2, description : ''},
+  //   // {id : 3, description : 'Visit India'}
+  // ]
 
   // todo = {
   //     id : 1,
   //     description: 'Learn to Dance'
   // }
 
-  constructor() { }
+  constructor(
+    private todoService: TodoDataService
+  ) { }
 
   ngOnInit() {
+    this.todoService.retriveAllTodos('in28minutes').subscribe(
+      response=> {
+
+        console.log(response);
+        this.todos = response;
+      }
+    )
   }
 
 }
