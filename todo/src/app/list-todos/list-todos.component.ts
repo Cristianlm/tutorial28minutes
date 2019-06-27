@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
+import { Router } from '@angular/router';
 
 //Future
 // - No Navigation Menu and Footer
@@ -45,7 +46,8 @@ export class ListTodosComponent implements OnInit {
   // }
 
   constructor(
-    private todoService: TodoDataService
+    private todoService: TodoDataService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -70,6 +72,18 @@ export class ListTodosComponent implements OnInit {
         
       }
     )
+  }
+  updateTodo (id) {
+    this.router.navigate(['todos', id])
+    // this.todoService.updateTodo('in28minutes', id).subscribe(
+    //   response=> {
+    //     // si hay respuesta en un DELETE, se enseña un mensaje al usuatrio
+    //     console.log(response);
+    //     this.message= `Delete of Todo ${id} Successful!`;
+    //     this.refreshTodos();
+        
+    //   }
+    // )
   }
 
 }
