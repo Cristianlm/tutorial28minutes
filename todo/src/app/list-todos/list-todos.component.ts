@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
 import { Router } from '@angular/router';
+import { BasicAuthenticationService } from '../service/basic-authentication.service';
 
 //Future
 // - No Navigation Menu and Footer
@@ -47,15 +48,16 @@ export class ListTodosComponent implements OnInit {
 
   constructor(
     private todoService: TodoDataService,
-    private router: Router
+    private router: Router,
+    private basicAuthenticationService: BasicAuthenticationService
   ) { }
 
   ngOnInit() {
     this.refreshTodos();
   }
   refreshTodos(){
-    this.todoService.retriveAllTodos('in28minutes').subscribe(
-      response=> {
+    this.todoService.retriveAllTodos(this.basicAuthenticationService.getAuthenticaticatedUser()).subscribe(
+      response => {
 
         console.log(response);
         this.todos = response;
@@ -63,7 +65,7 @@ export class ListTodosComponent implements OnInit {
     )
   }
   deleteTodo (id) {
-    this.todoService.deleteTodo('in28minutes', id).subscribe(
+    this.todoService.deleteTodo(this.basicAuthenticationService.getAuthenticaticatedUser(), id).subscribe(
       response=> {
         // si hay respuesta en un DELETE, se enseña un mensaje al usuatrio
         console.log(response);

@@ -1,8 +1,10 @@
 <H1>Login!</H1>
 
 <div class="container">
-  <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
-  <form (ngSubmit)="!todoForm.invalid && handleLogin()" #todoForm="ngForm">
+  <!-- <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+  <form (ngSubmit)="!todoForm.invalid && handleLogin()" #todoForm="ngForm"> -->
+      <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+      <form (ngSubmit)="!todoForm.invalid && handleBasicAuthLogin()" #todoForm="ngForm">
     <div>
       User Name : <input type="text" name="username" [(ngModel)]="username">
       Password : <input type="password" name="password" [(ngModel)]="password">

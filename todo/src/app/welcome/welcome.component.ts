@@ -34,20 +34,20 @@ export class WelcomeComponent implements OnInit {
   // void init() {
   ngOnInit() {
 
-    // console.log(this.route.snapshot.params['name'])
+     //console.log(this.route.snapshot.params['name'])
     this.name = this.route.snapshot.params['name'];
-
+    
   }
 
 
 
-  getWelcomeMessage() {
-    // console.log(this.service.executeHelloWorldBeanService());
-    this.service.executeHelloWorldBeanService().subscribe(
-      response => this.handleSuccessfulResponse(response),
-      error => this.handleErrorResponse(error)
-    );
-  }
+  // getWelcomeMessage() {
+  //   // console.log(this.service.executeHelloWorldBeanService());
+  //   this.service.executeHelloWorldBeanService().subscribe(
+  //     response => this.handleSuccessfulResponse(response),
+  //     error => this.handleErrorResponse(error)
+  //   );
+  // }
   getWelcomeMessageWithParameter() {
     // console.log(this.service.executeHelloWorldBeanService());
     this.service.executeHelloWorldBeanServiceWithPathVariable(this.name).subscribe(
@@ -58,6 +58,7 @@ export class WelcomeComponent implements OnInit {
   }
   handleSuccessfulResponse(response) {
     this.welcomeMessageFromService = response.message
+    
   }
   handleErrorResponse(error) {
     // console.log(error);

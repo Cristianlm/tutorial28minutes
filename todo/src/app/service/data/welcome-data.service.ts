@@ -24,23 +24,28 @@ export class WelcomeDataService {
   }
   executeHelloWorldBeanServiceWithPathVariable(name) {
 
-    let basicAuthHeaderString = this.createBasicAuthHttpHeader();
+    // let basicAuthHeaderString = this.createBasicAuthHttpHeader();
 
-    let header = new HttpHeaders({
-      Authorization: basicAuthHeaderString
-    });
+    // let header = new HttpHeaders({
+    //   Authorization: basicAuthHeaderString
+    // });
 
     // Hay que utilizar el back tick, y dentro puedes poner variables
-    return this.http.get<helloWorldBean>(`http://localhost:8090/hello-world/path-variable/${name}`, {headers:header});
+    return this.http.get<helloWorldBean> (`http://localhost:8090/hello-world/path-variable/${name}`, 
+    // {headers:header}
+    );
     //   Access to XMLHttpRequest at 'http://localhost:8090/hello-world/path-variable/in28minutes'
     //  from origin 'http://localhost:4200' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+    // La segunda vez: Access to XMLHttpRequest at 'http://localhost:8090/hello-world/path-variable/in28minutes'
+    //  from origin 'http://localhost:4200' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: It does not have HTTP ok status.
   }
   // Crear un metodo para hacer los headers automaticamente
-  createBasicAuthHttpHeader() {
-    let username = "user"
-    let password = "password"
-    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
-    return basicAuthHeaderString;
+  // createBasicAuthHttpHeader() {
+  //   let username = "user"
+  //   let password = "password"
+  //   let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
+  //   return basicAuthHeaderString;
 
-  }
+  // }
 }
