@@ -14,22 +14,20 @@ export class BasicAuthenticationService {
   constructor(private http: HttpClient) { }
 
 
-  executeBasicAuthenticationService(username, password) {
+  executeJWTAuthenticationService(username, password) {
 
-    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
-    console.log(basicAuthHeaderString);
-    let header = new HttpHeaders({
-      Authorization: basicAuthHeaderString
-    });
+   
 
     // Hay que utilizar el back tick, y dentro puedes poner variables
-    return this.http.get<AuthenticationBean> (
-      `${API_URL}/basicauth`,
-      { headers: header}).pipe(
+    return this.http.post<any> (
+      `${API_URL}/authenticate`,{
+        username,
+        password
+      }).pipe(
         map(
           data => {
             sessionStorage.setItem(AUTHENTICATED_USER, username);
-            sessionStorage.setItem(TOKEN, basicAuthHeaderString);
+            sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
             return data;
           }
         )
